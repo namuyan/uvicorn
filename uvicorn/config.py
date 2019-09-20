@@ -12,6 +12,10 @@ from uvicorn.middleware.debug import DebugMiddleware
 from uvicorn.middleware.message_logger import MessageLoggerMiddleware
 from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 from uvicorn.middleware.wsgi import WSGIMiddleware
+from uvicorn.protocols.http import HTTP_PROTOCOLS
+from uvicorn.protocols.websockets import WS_PROTOCOLS
+from uvicorn.lifespan import LIFESPAN
+from uvicorn.loops import LOOP_SETUPS
 
 LOG_LEVELS = {
     "critical": logging.CRITICAL,
@@ -19,27 +23,6 @@ LOG_LEVELS = {
     "warning": logging.WARNING,
     "info": logging.INFO,
     "debug": logging.DEBUG,
-}
-HTTP_PROTOCOLS = {
-    "auto": "uvicorn.protocols.http.auto:AutoHTTPProtocol",
-    "h11": "uvicorn.protocols.http.h11_impl:H11Protocol",
-    "httptools": "uvicorn.protocols.http.httptools_impl:HttpToolsProtocol",
-}
-WS_PROTOCOLS = {
-    "none": None,
-    "auto": "uvicorn.protocols.websockets.auto:AutoWebSocketsProtocol",
-    "websockets": "uvicorn.protocols.websockets.websockets_impl:WebSocketProtocol",
-    "wsproto": "uvicorn.protocols.websockets.wsproto_impl:WSProtocol",
-}
-LIFESPAN = {
-    "auto": "uvicorn.lifespan.on:LifespanOn",
-    "on": "uvicorn.lifespan.on:LifespanOn",
-    "off": "uvicorn.lifespan.off:LifespanOff",
-}
-LOOP_SETUPS = {
-    "auto": "uvicorn.loops.auto:auto_loop_setup",
-    "asyncio": "uvicorn.loops.asyncio:asyncio_setup",
-    "uvloop": "uvicorn.loops.uvloop:uvloop_setup",
 }
 INTERFACES = ["auto", "asgi3", "asgi2", "wsgi"]
 
